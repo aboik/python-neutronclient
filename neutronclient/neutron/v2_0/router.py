@@ -189,6 +189,9 @@ class SetGatewayRouter(neutronV20.NeutronCommand):
         parser.add_argument(
             '--disable-snat', action='store_true',
             help=_('Disable source NAT on the router gateway.'))
+        parser.add_argument(
+            '--enable-ipv6-nat', action='store_true',
+            help=_('Enable NAT rules for IPv6 floating IPs.'))
         return parser
 
     def run(self, parsed_args):
@@ -202,6 +205,8 @@ class SetGatewayRouter(neutronV20.NeutronCommand):
         router_dict = {'network_id': _ext_net_id}
         if parsed_args.disable_snat:
             router_dict['enable_snat'] = False
+        if parsed_args.enable_ipv6_nat:
+            router_dict['enable_ipv6_nat'] = True
         neutron_client.add_gateway_router(_router_id, router_dict)
         print(_('Set gateway for router %s') % parsed_args.router_id,
               file=self.app.stdout)

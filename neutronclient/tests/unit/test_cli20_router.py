@@ -235,6 +235,18 @@ class CLITestV20RouterJSON(test_cli20.CLITestV20Base):
                                      "enable_snat": False}}
                                    )
 
+    def test_set_gateway_enable_ipv6_nat(self):
+        """Set external gateway for router: myid externalid."""
+        resource = 'router'
+        cmd = router.SetGatewayRouter(test_cli20.MyApp(sys.stdout), None)
+        args = ['myid', 'externalid', '--enable-ipv6-nat']
+        self._test_update_resource(resource, cmd, 'myid',
+                                   args,
+                                   {"external_gateway_info":
+                                    {"network_id": "externalid",
+                                     "enable_ipv6_nat": True}}
+                                  )
+
     def test_remove_gateway(self):
         """Remove external gateway from router: externalid."""
         resource = 'router'
