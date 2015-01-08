@@ -61,6 +61,13 @@ class CreateFloatingIP(neutronV20.CreateCommand):
         parser.add_argument(
             '--fixed_ip_address',
             help=argparse.SUPPRESS)
+        parser.add_argument(
+            '--ip-version',
+            help=_('IP version to use for the floating IP if there are v4 '
+                   'and v6 subnets in FLOATING_NETWORK.'))
+        parser.add_argument(
+            '--ip_version',
+            help=argparse.SUPPRESS)
 
     def args2body(self, parsed_args):
         _network_id = neutronV20.find_resourceid_by_name_or_id(
@@ -73,6 +80,9 @@ class CreateFloatingIP(neutronV20.CreateCommand):
         if parsed_args.fixed_ip_address:
             body[self.resource].update({'fixed_ip_address':
                                         parsed_args.fixed_ip_address})
+        if parsed_args.ip_version:
+            body[self.resource].update({'ip_version':
+                                        parsed_args.ip_version})
         return body
 
 
