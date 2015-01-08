@@ -245,7 +245,7 @@ class CLITestV20RouterJSON(test_cli20.CLITestV20Base):
                                    {"external_gateway_info":
                                     {"network_id": "externalid",
                                      "enable_ipv6_nat": True}}
-                                  )
+                                   )
 
     def test_remove_gateway(self):
         """Remove external gateway from router: externalid."""
