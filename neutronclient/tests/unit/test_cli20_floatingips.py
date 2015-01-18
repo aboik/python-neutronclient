@@ -39,10 +39,10 @@ class CLITestV20FloatingIpsJSON(test_cli20.CLITestV20Base):
         cmd = fip.CreateFloatingIP(test_cli20.MyApp(sys.stdout), None)
         name = 'fip1'
         myid = 'myid'
-        ip_version = '100'
-        args = [name, '--ip_version', ip_version]
-        position_names = ['floating_network_id', 'ip_version']
-        position_values = [name, '100']
+        ip_version = '6'
+        args = [name, '--floating_ip_version', floating_ip_version]
+        position_names = ['floating_network_id', 'floating_ip_version']
+        position_values = [name, '6']
         self._test_create_resource(resource, cmd, name, myid, args,
                                    position_names, position_values)
 
